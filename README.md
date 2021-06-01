@@ -107,7 +107,7 @@ public void Post()
 }
 ```
 
-### Other methods
+### All methods
 RequesterNet has the common http methods, being:
 
 |Method      |Url                 |Parameters        |Headers                |Body                   |
@@ -117,3 +117,31 @@ RequesterNet has the common http methods, being:
 |PutAsync    |:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|
 |PatchAsync  |:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|
 |DeleteAsync |:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|
+
+## Extensions
+RequesterNet has some HttpStatusCode extensions to help check common status codes, example:
+```csharp
+public void Get()
+{
+   var response = await _requester.GetAsync("https://example.com/endpoint");
+   if (response.StatusCode.IsOk()) { //do stuff }
+   if (response.StatusCode.IsBadRequest()) { //do stuff }
+   if (response.StatusCode.IsInternalServerError()) { //do stuff }
+}
+```
+All HttpStatusCode extensions:
+|Method|Description|Returns|
+|:----:|:---------:|:-----:|
+|IsOk|Check if status code is 200|bool|
+|IsCreated|Check if status code is 201|bool|
+|IsAccepted|Check if status code is 202|bool|
+|IsNoContent|Check if status code is 204|bool|
+|IsBadRequest|Check if status code is 400|bool|
+|IsUnauthorized|Check if status code is 401|bool|
+|IsForbidden|Check if status code is 403|bool|
+|IsNotFound|Check if status code is 404|bool|
+|IsInternalServerError|Check if status code is 500|bool|
+|IsBadGateway|Check if status code is 502|bool|
+|IsServiceUnavailable|Check if status code is 503|bool|
+|IsGatewayTimeout|Check if status code is 504|bool|
+|IsHttpVersionNotSupported|Check if status code is 505|bool|
