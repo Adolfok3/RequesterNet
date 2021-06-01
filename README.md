@@ -112,8 +112,8 @@ RequesterNet has the common http methods, being:
 
 |Method      |Url                 |Parameters        |Headers                |Body                   |
 |:----------:|:------------------:|:-----------------:|:--------------------:|:---------------------:|
-|GetAsync    ||:heavy_check_mark:||:heavy_check_mark:||:heavy_check_mark:|
-|PostAsync   ||:heavy_check_mark:||:heavy_check_mark:||:heavy_check_mark:|
-|PutAsync    ||:heavy_check_mark:||:heavy_check_mark:||:heavy_check_mark:|
-|PatchAsync  ||:heavy_check_mark:||:heavy_check_mark:||:heavy_check_mark:|
-|DeleteAsync ||:heavy_check_mark:||:heavy_check_mark:||:heavy_check_mark:|
+|GetAsync    |:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|
+|PostAsync   |:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|
+|PutAsync    |:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|
+|PatchAsync  |:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|
+|DeleteAsync |:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|
