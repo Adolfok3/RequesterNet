@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Microsoft.Extensions.Options;
+using RequesterNetLib.Interfaces;
+using RequesterNetLib.Options;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -6,16 +9,14 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Web;
-using Microsoft.Extensions.Options;
-using RequesterNetLib.Interfaces;
-using RequesterNetLib.Options;
 
 namespace RequesterNetLib
 {
     public sealed class RequesterNet : IRequesterNet
     {
-        private readonly string _urlBase;
-        private readonly Dictionary<string, string> _defaultHeaders;
+        private string _urlBase;
+        private Dictionary<string, string> _defaultHeaders;
+        private uint _defaultTimeoutInSeconds = 30;
 
         public RequesterNet()
         {
@@ -23,8 +24,9 @@ namespace RequesterNetLib
 
         public RequesterNet(IOptions<RequesterNetOptions> options)
         {
-            _urlBase = options.Value.UrlBase;
-            _defaultHeaders = options.Value.DefaultHeaders;
+            SetDefaultHeaders(options.Value.DefaultHeaders);
+            SetUrlBase(options.Value.UrlBase);
+            SetDefaultTimeoutInSeconds(options.Value.DefaultTimeoutInSeconds);
         }
 
         public async Task<HttpResponseMessage> GetAsync(string url = null, Dictionary<string, string> parameters = null, Dictionary<string, string> headers = null, TimeSpan? timeout = null)
@@ -58,6 +60,21 @@ namespace RequesterNetLib
             return await http.DeleteAsync(finalUrl);
         }
 
+        public void SetDefaultHeaders(Dictionary<string, string> headers)
+        {
+            _defaultHeaders = headers;
+        }
+
+        public void SetUrlBase(string urlBase)
+        {
+            _urlBase = urlBase;
+        }
+
+        public void SetDefaultTimeoutInSeconds(uint timeoutInSeconds)
+        {
+            _defaultTimeoutInSeconds = timeoutInSeconds;
+        }
+
         private HttpClient GetHttp(string url, Dictionary<string, string> parameters, Dictionary<string, string> headers, object body, TimeSpan? timeout,
             out string finalUrl, out StringContent content)
         {
@@ -76,7 +93,7 @@ namespace RequesterNetLib
             return new StringContent(json, Encoding.UTF8, "application/json");
         }
 
-        internal string MountQueryString(string url, Dictionary<string, string> parameters)
+        private string MountQueryString(string url, Dictionary<string, string> parameters)
         {
             var finalUrl = GetFinalUrl(url);
             if (parameters == null || !parameters.Any())
@@ -99,7 +116,7 @@ namespace RequesterNetLib
             return string.IsNullOrEmpty(url) ? _urlBase : new Uri($"{_urlBase}/{url}").ToString();
         }
 
-        internal void SetHeaders(ref HttpClient http, Dictionary<string, string> headers)
+        private void SetHeaders(ref HttpClient http, Dictionary<string, string> headers)
         {
             headers ??= new Dictionary<string, string>();
 
@@ -112,7 +129,7 @@ namespace RequesterNetLib
             }
         }
 
-        internal void SetTimeout(ref HttpClient http, TimeSpan? timeout)
+        private void SetTimeout(ref HttpClient http, TimeSpan? timeout)
         {
             if (timeout.HasValue)
             {
@@ -120,7 +137,7 @@ namespace RequesterNetLib
                 return;
             }
 
-            http.Timeout = TimeSpan.FromSeconds(30);
+            http.Timeout = TimeSpan.FromSeconds(_defaultTimeoutInSeconds);
         }
     }
 }

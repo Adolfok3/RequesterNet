@@ -12,6 +12,7 @@ namespace RequesterNetLib.Extensions
         public static bool IsUnauthorized(this HttpStatusCode statusCode) => statusCode == HttpStatusCode.Unauthorized;
         public static bool IsForbidden(this HttpStatusCode statusCode) => statusCode == HttpStatusCode.Forbidden;
         public static bool IsNotFound(this HttpStatusCode statusCode) => statusCode == HttpStatusCode.NotFound;
+        public static bool IsRequestTimeout(this HttpStatusCode statusCode) => statusCode == HttpStatusCode.RequestTimeout;
         public static bool IsUnprocessableEntity(this HttpStatusCode statusCode) => statusCode == HttpStatusCode.UnprocessableEntity;
         public static bool IsInternalServerError(this HttpStatusCode statusCode) => statusCode == HttpStatusCode.InternalServerError;
         public static bool IsServiceUnavailable(this HttpStatusCode statusCode) => statusCode == HttpStatusCode.ServiceUnavailable;

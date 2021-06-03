@@ -63,6 +63,13 @@ namespace RequesterNetLib.Test
         }
 
         [Fact]
+        public void StatusCodeShouldBeIsRequestTimeout()
+        {
+            const HttpStatusCode status = HttpStatusCode.RequestTimeout;
+            Assert.True(status.IsRequestTimeout());
+        }
+
+        [Fact]
         public void StatusCodeShouldBeIsUnprocessableEntity()
         {
             const HttpStatusCode status = HttpStatusCode.UnprocessableEntity;
