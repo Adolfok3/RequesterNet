@@ -49,6 +49,28 @@ namespace RequesterNetLib.Test
         }
 
         [Fact]
+        public async Task GetAsyncWithParameterssShouldBeOk()
+        {
+            var options = Microsoft.Extensions.Options.Options.Create(new RequesterNetOptions
+            {
+                UrlBase = "https://jsonplaceholder.typicode.com",
+                DefaultHeaders = new Dictionary<string, string>
+                {
+                    { "client_id", Guid.NewGuid().ToString("N") }
+                }
+            });
+            var parameters = new Dictionary<string, string>
+            {
+                { "page", "1" },
+                { "limit", "10" }
+            };
+            var requester = new RequesterNet(options);
+            var response = await requester.GetAsync("todos/1", parameters);
+
+            Assert.True(response.StatusCode.IsOk());
+        }
+
+        [Fact]
         public async Task PostShouldBeOk()
         {
             var body = new
