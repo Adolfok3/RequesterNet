@@ -74,7 +74,7 @@ namespace RequesterNetLib.Test
                 title = "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
                 body = "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
             };
-            var timeout = TimeSpan.FromMilliseconds(500);
+            var timeout = TimeSpan.FromMilliseconds(1);
             var requester = new RequesterNet();
             await Assert.ThrowsAsync<TaskCanceledException>(() => requester.PostAsync("https://jsonplaceholder.typicode.com/posts", body: body, timeout: timeout));
         }
