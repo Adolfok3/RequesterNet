@@ -19,6 +19,7 @@ jobs:
         dotnet clean -c Release
         dotnet build -c Release
         dotnet test -c Release --no-build --verbosity normal
+        ls
         dotnet pack RequesterNet\RequesterNetLib.csproj -c Release --no-build /p:Version=${{ env.RELEASE_VERSION }}
     - name: Push to NuGet
       env:
