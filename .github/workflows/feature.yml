@@ -51,10 +51,7 @@ jobs:
         cd RequesterNetLib.Test
         dotnet test /p:CollectCoverage=true /p:CoverletOutput=TestResults/ /p:CoverletOutputFormat=lcov
     - name: Publish coverage report to coveralls.io
-      run: |
-        cd RequesterNetLib.Test
-        ls
-      # uses: coverallsapp/github-action@master
-      # with:
-        # github-token: ${{ secrets.GITHUB_TOKEN }}
-        # path-to-lcov: RequesterNetLib.Test/TestResults/coverage.info
+      uses: coverallsapp/github-action@master
+      with:
+        github-token: ${{ secrets.github_token }}
+        path-to-lcov: requesternetlib.test/testresults/coverage.info
