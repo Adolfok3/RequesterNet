@@ -37,7 +37,7 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal
   
-  coverage:
+  analisys:
     needs: test
     runs-on: ubuntu-latest
     steps:
@@ -51,6 +51,8 @@ jobs:
         cd RequesterNetLib.Test
         dotnet test /p:CollectCoverage=true /p:CoverletOutput=TestResults/ /p:CoverletOutputFormat=lcov
     - name: Publish coverage report to coveralls.io
+      run: |
+        ls
       uses: coverallsapp/github-action@master
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
