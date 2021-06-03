@@ -20,10 +20,10 @@ jobs:
         dotnet build -c Release
         dotnet test -c Release --no-build --verbosity normal
         ls
-        dotnet pack RequesterNet\RequesterNetLib.csproj -c Release --no-build /p:Version=${{ env.RELEASE_VERSION }}
+        dotnet pack RequesterNet/RequesterNetLib.csproj -c Release --no-build /p:Version=${{ env.RELEASE_VERSION }}
     - name: Push to NuGet
       env:
         NUGET_URL: https://api.nuget.org/v3/index.json
         NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
       run: |
-        dotnet nuget push RequesterNet\bin\Release\RequesterNetLib.${{ env.RELEASE_VERSION }}.nupkg
+        dotnet nuget push RequesterNet/bin/Release/RequesterNetLib.${{ env.RELEASE_VERSION }}.nupkg
