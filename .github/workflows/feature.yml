@@ -48,7 +48,8 @@ jobs:
         dotnet-version: 5.0.x
     - name: Generate coverage report
       run: |
-        cd RequesterNetLib.Tests/
+        ls
+        cd RequesterNetLib.Test
         dotnet test /p:CollectCoverage=true /p:CoverletOutput=TestResults/ /p:CoverletOutputFormat=lcov
     - name: Publish coverage report to coveralls.io
       uses: coverallsapp/github-action@master
