@@ -60,14 +60,14 @@ namespace RequesterNetLib
             return await http.DeleteAsync(finalUrl);
         }
 
-        public void SetDefaultHeaders(Dictionary<string, string> headers)
-        {
-            _defaultHeaders = headers;
-        }
-
         public void SetUrlBase(string urlBase)
         {
             _urlBase = urlBase;
+        }
+
+        public void SetDefaultHeaders(Dictionary<string, string> headers)
+        {
+            _defaultHeaders = headers;
         }
 
         public void SetDefaultTimeoutInSeconds(uint timeoutInSeconds)

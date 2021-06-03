@@ -12,5 +12,8 @@ namespace RequesterNetLib.Interfaces
         Task<HttpResponseMessage> PutAsync(string url = null, Dictionary<string, string> parameters = null, Dictionary<string, string> headers = null, object body = null, TimeSpan? timeout = null);
         Task<HttpResponseMessage> PatchAsync(string url = null, Dictionary<string, string> parameters = null, Dictionary<string, string> headers = null, object body = null, TimeSpan? timeout = null);
         Task<HttpResponseMessage> DeleteAsync(string url = null, Dictionary<string, string> parameters = null, Dictionary<string, string> headers = null, TimeSpan? timeout = null);
+        void SetUrlBase(string urlBase);
+        void SetDefaultHeaders(Dictionary<string, string> headers);
+        void SetDefaultTimeoutInSeconds(uint timeoutInSeconds);
     }
 }
