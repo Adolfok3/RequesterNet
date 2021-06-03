@@ -58,7 +58,7 @@ namespace RequesterNetLib.Test
         [Fact]
         public void StatusCodeShouldBeIsNotFound()
         {
-            const HttpStatusCode status = HttpStatusCode.Forbidden;
+            const HttpStatusCode status = HttpStatusCode.NotFound;
             Assert.True(status.IsNotFound());
         }
 
