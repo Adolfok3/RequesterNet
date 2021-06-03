@@ -3,8 +3,8 @@
 ![RequesterNet Logo](https://raw.githubusercontent.com/Adolfok3/RequesterNet/main/RequesterNet/Resources/Icon.png)
 
 [![GithubActions](https://img.shields.io/appveyor/build/Adolfok3/RequesterNet)](https://github.com/Adolfok3/RequesterNet/actions)
-![Tests](https://img.shields.io/appveyor/tests/Adolfok3/RequesterNet)
-[![Coverage Status](https://coveralls.io/repos/github/Adolfok3/RequesterNet/badge.svg?branch=feature/implement-unity-tests)](https://coveralls.io/github/Adolfok3/RequesterNet?branch=feature/implement-unity-tests)
+[![Tests](https://github.com/Adolfok3/RequesterNet/tree/main/RequesterNetLib.Test)](https://img.shields.io/appveyor/tests/Adolfok3/RequesterNet)
+[![Coverage Status](https://coveralls.io/repos/github/Adolfok3/RequesterNet/badge.svg?branch=main)](https://coveralls.io/github/Adolfok3/RequesterNet?branch=main)
 [![NuGet](https://buildstats.info/nuget/RequesterNetLib)](https://www.nuget.org/packages/RequesterNetLib/1.0.0)
 
 RequesterNet is a simple and fast REST and HTTP API Client for .NET Core.
