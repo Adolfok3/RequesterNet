@@ -25,11 +25,12 @@ public void ConfigureServices(IServiceCollection services)
 {
     services.AddRequesterNet(opt =>
     {
-        opt.UrlBase = "https://example.com",
+        opt.UrlBase = "https://example.com";
+        opt.DefaultTimeoutInSeconds = 100;
         opt.DefaultHeaders = new Dictionary<string, string>
         {
             { "Authorization", "Bearer myBearerToken" }
-        }
+        };
     });
 }
 ```
@@ -38,6 +39,7 @@ public void ConfigureServices(IServiceCollection services)
 | ------------- |:-------------:| -----:|--------:|
 |UrlBase|Set the base url for all calls when using RequesterNet.|string|null|
 |DefaultHeaders|Set the default headers for all calls when using RequesterNet.|Dictionary<string, string>|empty|
+|DefaultTimeoutInSeconds|Set the default timeout time in seconds for all calls when using RequesterNet.|uint|30|
 
 ## Usage
 
@@ -110,13 +112,13 @@ public void Post()
 ### All methods
 RequesterNet has the common http methods, being:
 
-|Method      |Url                 |Parameters        |Headers                |Body                   |
-|:----------:|:------------------:|:-----------------:|:--------------------:|:---------------------:|
-|GetAsync    |:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|
-|PostAsync   |:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|
-|PutAsync    |:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|
-|PatchAsync  |:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|
-|DeleteAsync |:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|
+|Method      |Url                 |Parameters        |Headers                |Body                   |Timeout
+|:----------:|:------------------:|:-----------------:|:--------------------:|:---------------------:|:------------:|
+|GetAsync    |:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:||:heavy_check_mark:|
+|PostAsync   |:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|
+|PutAsync    |:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|
+|PatchAsync  |:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|
+|DeleteAsync |:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:||:heavy_check_mark:|
 
 ## Extensions
 RequesterNet has some HttpStatusCode extensions to help check common status codes, example:
@@ -140,6 +142,8 @@ All HttpStatusCode extensions:
 |IsUnauthorized|Check if status code is 401|bool|
 |IsForbidden|Check if status code is 403|bool|
 |IsNotFound|Check if status code is 404|bool|
+|IsRequestTimeout|Check if status code is 408|bool|
+|IsUnprocessableEntity|Check if status code is 422|bool|
 |IsInternalServerError|Check if status code is 500|bool|
 |IsBadGateway|Check if status code is 502|bool|
 |IsServiceUnavailable|Check if status code is 503|bool|
