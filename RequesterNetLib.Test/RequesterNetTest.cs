@@ -23,7 +23,8 @@ namespace RequesterNetLib.Test
         {
             var options = Microsoft.Extensions.Options.Options.Create(new RequesterNetOptions
             {
-                UrlBase = "https://jsonplaceholder.typicode.com"
+                UrlBase = "https://jsonplaceholder.typicode.com",
+                DefaultTimeoutInSeconds = 25
             });
             var requester = new RequesterNet(options);
             var response = await requester.GetAsync("todos/1");
